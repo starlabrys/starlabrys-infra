@@ -4,3 +4,4 @@
 *.tfstate.backup
 *.tfplan
 # .terraform.lock.hcl 建议提交（锁定 provider 版本）
+.idea
