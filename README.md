@@ -1,15 +1,20 @@
 # starlabrys-infra
 
-Starlabrys 公司基础设施代码（OpenTofu），从个人私有仓库 `w10n-config` 迁移而来。决策背景见 `w10n-config` 仓库的 `infra/github/ADR-0001-starlabrys-org-access-model.md` 与相关 TASK-SPEC（决策文档留在个人仓库管理，本仓库只放落地的 IaC 代码）。
+Starlabrys 公司基础设施代码（OpenTofu）。本仓库是**公开**的，只放不含凭证的落地 IaC 代码。
+
+决策文档（ADR 与 TASK-SPEC）在私有仓库 `starlabrys/ops` 的 `docs/github/` 下——本仓库只放落地代码，两者是不同的 git 仓库，无法用相对路径互链。
 
 ## 目录结构
 
 ```
 github/
 └── opentofu/
+    ├── org-settings/        # 管理 starlabrys organization 级设置（base permission 等）
     ├── starlabrys-com/      # 管理 starlabrys/starlabrys-com 仓库（官网）：仓库属性、engineering team 定义、协作者授权、分支保护
     └── starlabrys-infra/    # 管理本仓库自己的授权与分支保护（复用 starlabrys-com 模块里定义的 engineering team）
 ```
+
+> ⚠️ `org-settings` 模块用 `github_organization_settings`，该资源**接管整个 org 设置块**：未显式声明的可选字段会被 provider 默认值覆盖。新增字段前务必先读线上现值，详见该模块 `main.tf` 内注释。
 
 按 `<provider>/opentofu/<module>` 组织，为未来非 GitHub 的公司基础设施（AWS、DNS 等）预留同级空间，例如将来可能新增 `aws/opentofu/...`。
 

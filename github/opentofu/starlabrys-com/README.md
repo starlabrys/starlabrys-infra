@@ -46,7 +46,7 @@ git push -u origin main
 
 `access.tf` 创建 org team `engineering`（`var.engineering_team_name`），把协作者（`var.collaborator_github_username`，默认 `ew8`）加入并授予本仓库 Write 权限；`branch-protection.tf` 给 `main` 分支加保护：PR + 至少 1 次 approve + branch 需与 base 保持最新，`enforce_admins = false`（owner 豁免，可直接 push / 直接合并；协作者必须走 PR）。
 
-背景与决策记录在 `w10n-config`（私有个人仓库）的 `infra/github/ADR-0001-starlabrys-org-access-model.md`、`infra/github/TASK-SPEC-starlabrys-collaborator-access.md`——决策文档留在个人仓库管理，本仓库只放落地的 IaC 代码，两者是不同的 git 仓库，无法用相对路径互链。
+背景与决策记录在私有仓库 `starlabrys/ops` 的 `docs/github/ADR-0001-starlabrys-org-access-model.md`、`docs/github/TASK-SPEC-starlabrys-collaborator-access.md`——本仓库只放落地的 IaC 代码，两者是不同的 git 仓库，无法用相对路径互链。
 
 `engineering` team 在本模块创建，是唯一定义处；其它 starlabrys 仓库（如 `starlabrys-infra`）复用同一个 team 时用 `data "github_team"` 查询，不重复创建。
 
