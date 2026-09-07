@@ -11,6 +11,7 @@ github/
 └── opentofu/
     ├── cfo/                 # 管理 starlabrys/cfo 私有仓库（中国小微记账/税务方法论）：仅建仓库，private，无协作者/分支保护（同 ops）
     ├── org-settings/        # 管理 starlabrys organization 级设置（base permission 等）
+    ├── runlog/              # 管理 starlabrys/runlog 公开仓库（个人跑步记录 App）：仅建仓库，public，无协作者/分支保护
     ├── starlabrys-com/      # 管理 starlabrys/starlabrys-com 仓库（官网）：仓库属性、engineering team 定义、协作者授权、分支保护
     └── starlabrys-infra/    # 管理本仓库自己的授权与分支保护（复用 starlabrys-com 模块里定义的 engineering team）
 ```
